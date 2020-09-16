@@ -1,5 +1,5 @@
 :root {
-  --primary-color: rgb(0, 0, 0);
+  --primary-color: rgb(0, 63, 122);
   --font-color: white;
 }
 
@@ -26,9 +26,9 @@ body {
 .player {
   max-width: 80vw;
   min-width: 800px;
-  border: 5px solid black;
+  border: 5px solid var(--primary-color);
   border-radius: 10px;
-  background: black;
+  background: var(--primary-color);
   position: relative;
   cursor: pointer;
 }
@@ -174,19 +174,24 @@ video {
   margin-right: 15px;
 }
 
-
+select,
+option {
+  cursor: pointer;
+}
 
 select {
-
+  background: transparent;
   color: var(--font-color);
   border: none;
-  font-size: 18px;
+  font-size: 15px;
   position: relative;
   top: -2.5px;
   border-radius: 5px;
 }
 
-
+select:focus {
+  outline: none;
+}
 
 select > option {
   background: rgba(0, 0, 0, 0.9);
