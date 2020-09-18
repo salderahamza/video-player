@@ -1,4 +1,5 @@
 (function () {
+  const player = document.querySelector(".player");
   const video = document.querySelector("video");
   const progressRange = document.querySelector(".progress-range");
   const progressBar = document.querySelector(".progress-bar");
@@ -80,7 +81,51 @@
     video.playbackRate = speed.value;
   }
   // Fullscreen ------------------------------- //
+  /* Get the documentElement (<html>) to display the page in fullscreen */
+  var elem = document.documentElement;
 
+  /* View in fullscreen */
+  function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  function closeFullscreen(elem) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  }
+
+  let fullscreen = false;
+
+  function toggleFullscreen() {
+    if (!fullscreen) {
+      openFullscreen(player);
+    } else {
+      closeFullscreen();
+    }
+    fullscreen = !fullscreen;
+  }
   // Event Listeners
 
   playBtn.addEventListener("click", togglePlay);
@@ -91,4 +136,5 @@
   volumeRange.addEventListener("click", changeVolume);
   volumeIcon.addEventListener("click", toggleMute);
   speed.addEventListener("change", changeSpeed);
+  fullscreenBtn.addEventListener("click", toggleFullscreen);
 })();
